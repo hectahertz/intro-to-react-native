@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, TextInput } from 'react-native';
+import { StyleSheet, Text, View, TextInput, Button } from 'react-native';
 import { Entypo } from '@expo/vector-icons';
 
 export default class App extends React.Component {
@@ -8,21 +8,39 @@ export default class App extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Entypo name="email" size={32} color="black" />
-        <TextInput
-          style={{ height: 40 }}
-          placeholder="Enter your username"
-          onChangeText={text => this.setState({ user: text })}
+        <View style={styles.headerContainer}>
+          <Entypo name="twitter" size={80} color="#1DCAFF" />
+          <Text style={styles.header}>See what’s happening.</Text>
+        </View>
+        <View style={styles.inputBox}>
+          <View style={styles.row}>
+            <Entypo name="email" size={16} color="#0084B4" />
+            <TextInput
+              underlineColorAndroid="transparent"
+              selectTextOnFocus
+              style={styles.input}
+              placeholder="Enter your username"
+              onChangeText={text => this.setState({ user: text })}
+            />
+          </View>
+          <View style={styles.row}>
+            <Entypo name="key" size={16} color="#0084B4" />
+            <TextInput
+              underlineColorAndroid="transparent"
+              selectTextOnFocus
+              style={styles.input}
+              secureTextEntry={true}
+              placeholder="Enter your passsword"
+              onChangeText={text => this.setState({ password: text })}
+            />
+          </View>
+        </View>
+        <Button
+          onPress={() => console.log(this.state.user, this.state.password)}
+          title="Login"
+          color="#0084B4"
+          accessibilityLabel="Login"
         />
-        <Entypo name="key" size={32} color="black" />
-        <TextInput
-          style={{ height: 40 }}
-          placeholder="Enter your passsword"
-          onChangeText={text => this.setState({ password: text })}
-        />
-        <Text style={{ padding: 10, fontSize: 16 }}>
-          {JSON.stringify(this.state, null, 2)}
-        </Text>
       </View>
     );
   }
@@ -31,8 +49,39 @@ export default class App extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center'
+    backgroundColor: '#FFFFFF',
+    alignItems: 'stretch',
+    justifyContent: 'space-between',
+    paddingTop: 64,
+    paddingBottom: 24,
+    paddingHorizontal: 24
+  },
+  headerContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center'
+  },
+  header: {
+    marginLeft: 32,
+    fontSize: 34,
+    fontWeight: 'bold'
+  },
+  inputBox: {
+    flex: 2,
+    alignSelf: 'stretch',
+    marginLeft: 24
+  },
+  row: {
+    marginTop: 16,
+    flexDirection: 'row',
+    alignItems: 'center'
+  },
+  input: {
+    flex: 1,
+    height: 40,
+    marginLeft: 8,
+    paddingRight: 24,
+    borderBottomWidth: 1,
+    borderColor: '#C0DEED'
   }
 });
