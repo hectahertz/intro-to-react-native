@@ -1,5 +1,12 @@
 import React from 'react';
-import { StyleSheet, Text, View, TextInput, Button } from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  View,
+  KeyboardAvoidingView,
+  TextInput,
+  Button
+} from 'react-native';
 import { Entypo } from '@expo/vector-icons';
 
 export default class App extends React.Component {
@@ -7,7 +14,7 @@ export default class App extends React.Component {
 
   render() {
     return (
-      <View style={styles.container}>
+      <KeyboardAvoidingView behavior="padding" style={styles.container}>
         <View style={styles.headerContainer}>
           <Entypo name="twitter" size={80} color="#1DCAFF" />
           <Text style={styles.header}>See what’s happening.</Text>
@@ -35,13 +42,15 @@ export default class App extends React.Component {
             />
           </View>
         </View>
-        <Button
-          onPress={() => console.log(this.state.user, this.state.password)}
-          title="Login"
-          color="#0084B4"
-          accessibilityLabel="Login"
-        />
-      </View>
+        <View style={styles.button}>
+          <Button
+            onPress={() => console.log(this.state.user, this.state.password)}
+            title="Login"
+            color="#0084B4"
+            accessibilityLabel="Login"
+          />
+        </View>
+      </KeyboardAvoidingView>
     );
   }
 }
@@ -53,7 +62,6 @@ const styles = StyleSheet.create({
     alignItems: 'stretch',
     justifyContent: 'space-between',
     paddingTop: 64,
-    paddingBottom: 24,
     paddingHorizontal: 24
   },
   headerContainer: {
@@ -83,5 +91,8 @@ const styles = StyleSheet.create({
     paddingRight: 24,
     borderBottomWidth: 1,
     borderColor: '#C0DEED'
+  },
+  button: {
+    marginBottom: 16
   }
 });
