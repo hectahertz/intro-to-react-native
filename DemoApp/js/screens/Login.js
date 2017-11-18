@@ -13,6 +13,7 @@ export default class Login extends React.Component {
   state = { user: '', password: '' };
 
   render() {
+    const { navigate } = this.props.navigation;
     return (
       <KeyboardAvoidingView behavior="padding" style={styles.container}>
         <View style={styles.headerContainer}>
@@ -44,7 +45,7 @@ export default class Login extends React.Component {
         </View>
         <View style={styles.button}>
           <Button
-            onPress={() => console.log(this.state.user, this.state.password)}
+            onPress={() => navigate('Tweets')}
             title="Login"
             color="#0084B4"
             accessibilityLabel="Login"
