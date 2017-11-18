@@ -11,7 +11,7 @@ import { Entypo } from '@expo/vector-icons';
 import firebase from '../connectors/firebase';
 
 export default class Login extends React.Component {
-  state = { user: '', password: '' };
+  state = { user: 'user1@demo.com', password: 'password' };
 
   render() {
     const { navigate } = this.props.navigation;
