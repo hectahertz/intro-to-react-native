@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, Button } from 'react-native';
 import firebase from '../connectors/firebase';
+import Tweet from '../components/Tweet';
 
 export default class Tweets extends React.Component {
   state = {
@@ -29,7 +30,13 @@ export default class Tweets extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>{JSON.stringify(this.state, 0, 2)}</Text>
+        {Object.keys(this.state.tweets).map(key => (
+          <Tweet
+            key={key}
+            tweet={this.state.tweets[key].text}
+            user={this.state.users[this.state.tweets[key].uid]}
+          />
+        ))}
       </View>
     );
   }
@@ -39,7 +46,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#FFFFFF',
-    alignItems: 'center',
-    justifyContent: 'center'
+    alignItems: 'stretch',
+    justifyContent: 'flex-start'
   }
 });
