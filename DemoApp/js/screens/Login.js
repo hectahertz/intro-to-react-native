@@ -8,6 +8,7 @@ import {
   Button
 } from 'react-native';
 import { Entypo } from '@expo/vector-icons';
+import firebase from '../connectors/firebase';
 
 export default class Login extends React.Component {
   state = { user: '', password: '' };
@@ -45,7 +46,19 @@ export default class Login extends React.Component {
         </View>
         <View style={styles.button}>
           <Button
-            onPress={() => navigate('Tweets')}
+            onPress={async () => {
+              try {
+                const user = await firebase
+                  .auth()
+                  .signInWithEmailAndPassword(
+                    this.state.user,
+                    this.state.password
+                  );
+                navigate('Tweets', { user });
+              } catch (error) {
+                console.warn(error);
+              }
+            }}
             title="Login"
             color="#0084B4"
             accessibilityLabel="Login"
