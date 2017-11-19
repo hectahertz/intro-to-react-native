@@ -1,6 +1,6 @@
 import React from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
-import { Constants } from 'expo'
+import { StyleSheet, Text, View, Button, FlatList } from 'react-native';
+import { Constants } from 'expo';
 import firebase from '../connectors/firebase';
 import Tweet from '../components/Tweet';
 import Header from '../components/Header';
@@ -37,13 +37,17 @@ export default class Tweets extends React.Component {
             user={this.state.users[this.props.navigation.state.params.user.uid]}
           />
         )}
-        {Object.keys(this.state.tweets).map(key => (
-          <Tweet
-            key={key}
-            tweet={this.state.tweets[key].text}
-            user={this.state.users[this.state.tweets[key].uid]}
-          />
-        ))}
+        <FlatList
+          data={Object.keys(this.state.tweets)
+            .map(key => ({
+              ...this.state.tweets[key],
+              key
+            }))
+            .reverse()}
+          renderItem={({ item }) => (
+            <Tweet tweet={item.text} user={this.state.users[item.uid]} />
+          )}
+        />
       </View>
     );
   }
