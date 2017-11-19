@@ -23,6 +23,7 @@ The Demo App included in the repository is meant to be used as a reference in a 
 
 * [Login screen](screenshots/Login.png)
 * [Tweets screen](screenshots/Tweets.png)
+* [Script](script.md)
 
 ### Reference links
 * [React Native docs](https://facebook.github.io/react-native/docs/getting-started.html)
