@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View, Button } from 'react-native';
 import firebase from '../connectors/firebase';
 import Tweet from '../components/Tweet';
+import Header from '../components/Header';
 
 export default class Tweets extends React.Component {
   state = {
@@ -30,6 +31,11 @@ export default class Tweets extends React.Component {
   render() {
     return (
       <View style={styles.container}>
+        {this.state.users[this.props.navigation.state.params.user.uid] && (
+          <Header
+            user={this.state.users[this.props.navigation.state.params.user.uid]}
+          />
+        )}
         {Object.keys(this.state.tweets).map(key => (
           <Tweet
             key={key}
