@@ -1,5 +1,12 @@
 import React from 'react';
-import { StyleSheet, Text, View, KeyboardAvoidingView, Button, FlatList } from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  View,
+  KeyboardAvoidingView,
+  Button,
+  FlatList
+} from 'react-native';
 import { Constants } from 'expo';
 import firebase from '../connectors/firebase';
 import Tweet from '../components/Tweet';
@@ -40,13 +47,15 @@ export default class Tweets extends React.Component {
       .child('tweets')
       .push().key;
 
-    return firebase
+    firebase
       .database()
       .ref(`/tweets/${newTweetKey}`)
       .update({
         text: this.state.tweet,
         uid: this.props.navigation.state.params.user.uid
       });
+
+    this.setState({ tweet: '' });
   }
 
   render() {
@@ -70,6 +79,7 @@ export default class Tweets extends React.Component {
         />
         {this.state.users[this.props.navigation.state.params.user.uid] && (
           <Footer
+            value={this.state.tweet}
             onChangeText={tweet => this.setState({ tweet })}
             onSend={this.sendTweet.bind(this)}
           />

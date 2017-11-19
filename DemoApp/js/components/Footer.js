@@ -9,10 +9,11 @@ import {
 } from 'react-native';
 import { Entypo } from '@expo/vector-icons';
 
-const Footer = ({ onChangeText, onSend }) => {
+const Footer = ({ value, onChangeText, onSend }) => {
   return (
     <View style={styles.container}>
       <TextInput
+        value={value}
         underlineColorAndroid="transparent"
         selectTextOnFocus
         style={styles.input}
