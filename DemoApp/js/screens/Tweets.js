@@ -4,11 +4,13 @@ import { Constants } from 'expo';
 import firebase from '../connectors/firebase';
 import Tweet from '../components/Tweet';
 import Header from '../components/Header';
+import Footer from '../components/Footer';
 
 export default class Tweets extends React.Component {
   state = {
     users: {},
-    tweets: {}
+    tweets: {},
+    tweet: ''
   };
 
   componentWillMount() {
@@ -48,6 +50,12 @@ export default class Tweets extends React.Component {
             <Tweet tweet={item.text} user={this.state.users[item.uid]} />
           )}
         />
+        {this.state.users[this.props.navigation.state.params.user.uid] && (
+          <Footer
+            onChangeText={tweet => this.setState({ tweet })}
+            onSend={() => console.log(this.state.tweet)}
+          />
+        )}
       </View>
     );
   }
