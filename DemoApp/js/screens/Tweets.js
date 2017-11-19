@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Button, FlatList } from 'react-native';
+import { StyleSheet, Text, View, KeyboardAvoidingView, Button, FlatList } from 'react-native';
 import { Constants } from 'expo';
 import firebase from '../connectors/firebase';
 import Tweet from '../components/Tweet';
@@ -51,7 +51,7 @@ export default class Tweets extends React.Component {
 
   render() {
     return (
-      <View style={styles.container}>
+      <KeyboardAvoidingView behavior="padding" iew style={styles.container}>
         {this.state.users[this.props.navigation.state.params.user.uid] && (
           <Header
             user={this.state.users[this.props.navigation.state.params.user.uid]}
@@ -74,7 +74,7 @@ export default class Tweets extends React.Component {
             onSend={this.sendTweet.bind(this)}
           />
         )}
-      </View>
+      </KeyboardAvoidingView>
     );
   }
 }
