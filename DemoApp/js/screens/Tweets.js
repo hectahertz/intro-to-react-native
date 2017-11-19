@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View, Button } from 'react-native';
+import { Constants } from 'expo'
 import firebase from '../connectors/firebase';
 import Tweet from '../components/Tweet';
 import Header from '../components/Header';
@@ -50,6 +51,7 @@ export default class Tweets extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
+    paddingTop: Constants.statusBarHeight,
     flex: 1,
     backgroundColor: '#FFFFFF',
     alignItems: 'stretch',
