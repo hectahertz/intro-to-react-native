@@ -21,6 +21,9 @@ If you also want to run apps through Expo in an emulator, you'll need to set it 
 
 The Demo App included in the repository is meant to be used as a reference in a 2h workshop to illustrate basic React Native & Firebase concepts.
 
+* [Login screen](screenshots/Login.png)
+* [Tweets screen](screenshots/Tweets.png)
+
 ### Reference links
 * [React Native docs](https://facebook.github.io/react-native/docs/getting-started.html)
 * [Expo docs](https://docs.expo.io/versions/latest/index.html)
