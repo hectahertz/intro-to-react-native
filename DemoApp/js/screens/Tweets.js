@@ -31,6 +31,24 @@ export default class Tweets extends React.Component {
       });
   }
 
+  sendTweet() {
+    if (this.state.tweet.length < 1) return;
+    // Get a key for a new Tweet.
+    var newTweetKey = firebase
+      .database()
+      .ref()
+      .child('tweets')
+      .push().key;
+
+    return firebase
+      .database()
+      .ref(`/tweets/${newTweetKey}`)
+      .update({
+        text: this.state.tweet,
+        uid: this.props.navigation.state.params.user.uid
+      });
+  }
+
   render() {
     return (
       <View style={styles.container}>
@@ -53,7 +71,7 @@ export default class Tweets extends React.Component {
         {this.state.users[this.props.navigation.state.params.user.uid] && (
           <Footer
             onChangeText={tweet => this.setState({ tweet })}
-            onSend={() => console.log(this.state.tweet)}
+            onSend={this.sendTweet.bind(this)}
           />
         )}
       </View>
