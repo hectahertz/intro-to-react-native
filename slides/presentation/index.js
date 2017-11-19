@@ -168,7 +168,17 @@ export default class Presentation extends React.Component {
             textFont="secondary"
             lineHeight={1.2}
           >
-            Talks to native code! 😲
+            🚀 CodePush 🚀
+          </Heading>
+        </Slide>
+        <Slide transition={["slide"]}>
+          <Heading
+            size={2}
+            textColor="whiteSmoke"
+            textFont="secondary"
+            lineHeight={1.2}
+          >
+            You can add native code!
           </Heading>
           <Image
             src={android}
