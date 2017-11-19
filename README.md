@@ -62,7 +62,7 @@ user5@demo.com // password
 * Starting DB Shape
 
 
-```json
+```javascript
 {
   "tweets": {
     "-KzIr3nG4akj5U5NvCob": {
@@ -82,11 +82,21 @@ user5@demo.com // password
 
 * Security rules
 
-```json
+```javascript
 {
   "rules": {
     ".read": "auth != null",
-    ".write": "auth != null"
+    ".write": "auth != null",
+    "tweets": {
+      "$tweet": {
+        // new messages must have a string text and a string uid
+        ".validate": "newData.hasChildren(['text', 'uid']) && newData.child('text').isString() && newData.child('uid').isString()",
+        // the uid must match the authenticated user
+        "uid": {
+           ".validate": "newData.val() === auth.uid"
+        },
+      }
+    }
   }
 }
 ```
